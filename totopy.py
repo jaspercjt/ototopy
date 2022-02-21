@@ -1,10 +1,11 @@
 import random
 import os
-prizePool = 42000000
+prizePool = 1000000
 
 def checkReward(winningNums, guess):
     hits = 0
     extraHit = 0
+
     for num in guess:
         if (num in winningNums[:6]):
             hits += 1
@@ -17,15 +18,15 @@ def checkReward(winningNums, guess):
 
     elif (hits == 5 and extraHit):
         # print('group 2')
-        return prizePool*0.08
+        return prizePool*0.08*0.33 # Multiplied by expected share rate
 
     elif (hits == 5):
         # print('group 3')
-        return prizePool*0.055
+        return prizePool*0.055*0.007 # Multiplied by expected share rate
 
     elif (hits == 4 and extraHit):
         # print('group 4')
-        return prizePool*0.03
+        return prizePool*0.03*0.003 # Multiplied by expected share rate
 
     elif (hits == 4):
         # print('group 5')
