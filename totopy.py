@@ -1,5 +1,6 @@
 import random
 import os
+prizePool = 42000000
 
 def checkReward(winningNums, guess):
     hits = 0
@@ -12,19 +13,19 @@ def checkReward(winningNums, guess):
 
     if (hits == 6):
         # print('jackpot')
-        return 1300000
+        return prizePool*0.38
 
     elif (hits == 5 and extraHit):
         # print('group 2')
-        return 140000
+        return prizePool*0.08
 
     elif (hits == 5):
         # print('group 3')
-        return 1600
+        return prizePool*0.055
 
     elif (hits == 4 and extraHit):
         # print('group 4')
-        return 400
+        return prizePool*0.03
 
     elif (hits == 4):
         # print('group 5')
@@ -62,6 +63,7 @@ def quickPick(number):
         num = randomTotoNum()
         if (num not in pick): pick.append(num)
     pick.sort();
+    print(f'Drawing with {pick}')
     return pick
 
 def produceDraw():
@@ -105,13 +107,12 @@ while (noJackpot):
     cost += system
     earned += reward
     count += 1
-    if (reward == 1300000): noJackpot = False
+    if (reward == prizePool): noJackpot = False
     if (count % 100000 == 0):
         print(f'Draw number: {count:,} -- Loss: -${cost:,} and reward: ${earned:,}')
 
 
+print(f'Draw number: {count:,} -- Loss: -${cost:,} and reward: ${earned:,}')
 print(f'---- POT -----')
 print(f'Your guess was: {inputGuess}')
-print(f'Loss: -${cost:,} and reward: ${earned:,}')
 print(f'Net: ${earned - cost:,}')
-print(f'Number of draws: {count}')
