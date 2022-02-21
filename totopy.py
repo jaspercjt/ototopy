@@ -1,5 +1,4 @@
 import random
-import os
 
 def checkReward(winningNums, guess):
     hits = 0
