@@ -1,4 +1,5 @@
 import random
+import os
 
 def checkReward(winningNums, guess):
     hits = 0
@@ -55,6 +56,14 @@ def binomial(n, k):
 def randomTotoNum():
     return random.randrange(1,49,1)
 
+def quickPick(number):
+    pick = []
+    while (len(pick) < number):
+        num = randomTotoNum()
+        if (num not in pick): pick.append(num)
+    pick.sort();
+    return pick
+
 def produceDraw():
     winningNumbers = []
     draw = []
@@ -69,7 +78,13 @@ def produceDraw():
     return draw;
 
 #############################################################################
-inputGuess = [int(x) for x in input('Input guess: ').split(',')]
+
+input1 = input('Input guess (Leave blank for quick pick): ')
+if (input1 == ''):
+    number = int(input('Quick pick? How many numbers (6-12): '))
+    inputGuess = quickPick(number)
+else:
+    inputGuess = [int(x) for x in input.split(',')]
 # Assumption: draw jackpot is 1 million
 noJackpot = True
 count = 0
